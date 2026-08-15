@@ -4,7 +4,7 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator, type BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import ProfileScreen from '../screens/ProfileScreen';
+import ProfileStack from './ProfileStack';
 import EmptyTab from '../screens/EmptyTab';
 import { MagazineIcon, FollowingIcon, ExperiencesIcon, ProfileIcon } from './TabIcons';
 import { colors, type as t } from '../theme';
@@ -101,7 +101,7 @@ export default function RootTabs() {
         <Tab.Screen name="magazine" component={MagazineScreen} />
         <Tab.Screen name="following" component={FollowingScreen} />
         <Tab.Screen name="experiences" component={ExperiencesScreen} />
-        <Tab.Screen name="profile" component={ProfileScreen} />
+        <Tab.Screen name="profile" component={ProfileStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );
