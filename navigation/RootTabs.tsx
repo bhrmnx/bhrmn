@@ -5,13 +5,14 @@ import { createBottomTabNavigator, type BottomTabBarProps } from '@react-navigat
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import ProfileStack from './ProfileStack';
+import MagazineStack from './MagazineStack';
 import EmptyTab from '../screens/EmptyTab';
 import { MagazineIcon, FollowingIcon, ExperiencesIcon, ProfileIcon } from './TabIcons';
 import { colors, type as t } from '../theme';
 
 const Tab = createBottomTabNavigator();
 
-const ICONS: Record<string, (p: { color: string }) => JSX.Element> = {
+const ICONS: Record<string, (p: { color: string }) => React.ReactElement> = {
   magazine: MagazineIcon,
   following: FollowingIcon,
   experiences: ExperiencesIcon,
@@ -43,21 +44,6 @@ function TabBar({ state, navigation }: BottomTabBarProps) {
     </View>
   );
 }
-
-const MagazineScreen = () => (
-  <EmptyTab
-    kicker="MAGAZINE"
-    title="The world, edited"
-    body="The reason to open Bhrmn on a day with nothing booked. Hand-curated cards about places worth knowing about — not an algorithmic feed."
-    bullets={[
-      'Discovery — a place you had not thought about (50% of cards)',
-      'Dispatch — what is happening somewhere right now (20%)',
-      'Itinerary — a real route someone actually travelled (10%)',
-      'This or That — two places, and where people who went to both landed (10%)',
-      'Review / Voice — one traveller, one strong opinion (10%)',
-    ]}
-  />
-);
 
 const FollowingScreen = () => (
   <EmptyTab
@@ -98,7 +84,7 @@ export default function RootTabs() {
         screenOptions={{ headerShown: false }}
         tabBar={(p) => <TabBar {...p} />}
       >
-        <Tab.Screen name="magazine" component={MagazineScreen} />
+        <Tab.Screen name="magazine" component={MagazineStack} />
         <Tab.Screen name="following" component={FollowingScreen} />
         <Tab.Screen name="experiences" component={ExperiencesScreen} />
         <Tab.Screen name="profile" component={ProfileStack} />

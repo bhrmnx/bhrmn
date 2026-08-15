@@ -1,6 +1,12 @@
 import { supabase } from './supabase';
 
-export type Place = { id: string; name: string; country: string; kind: 'city' | 'country' };
+export type Place = {
+  id: string;
+  name: string;
+  country: string;
+  kind: 'city' | 'country';
+  parentId: string | null;   // for a city, the id of its country
+};
 
 export type TripRow = {
   id: string;
@@ -19,18 +25,35 @@ export async function searchPlaces(q: string, limit = 25): Promise<Place[]> {
   if (term.length < 2) return [];
   const { data, error } = await supabase
     .from('places')
-    .select('id, name, country_code, kind, parent:parent_id(name)')
+    .select('id, name, country_code, kind, parent_id, parent:parent_id(name)')
     .ilike('name', `${term}%`)
     .order('kind', { ascending: false }) // cities before countries
     .order('name')
     .limit(limit);
   if (error) throw error;
-  return (data ?? []).map((r: any) => ({
+  return (data ?? []).map(toPlace);
+}
+
+function toPlace(r: any): Place {
+  return {
     id: r.id,
     name: r.name,
     country: r.parent?.name ?? r.country_code,
     kind: r.kind as 'city' | 'country',
-  }));
+    parentId: r.parent_id ?? null,
+  };
+}
+
+/** Every city we know about inside a given country, for the add-trip nudge. */
+export async function citiesInCountry(countryId: string): Promise<Place[]> {
+  const { data, error } = await supabase
+    .from('places')
+    .select('id, name, country_code, kind, parent_id, parent:parent_id(name)')
+    .eq('parent_id', countryId)
+    .eq('kind', 'city')
+    .order('name');
+  if (error) throw error;
+  return (data ?? []).map(toPlace);
 }
 
 export async function searchPeople(q: string, excludeId: string) {
@@ -126,6 +149,40 @@ export async function listTrips(ownerId: string): Promise<TripRow[]> {
       status: tc.status,
     })),
   }));
+}
+
+/** Distinct countries the traveller has actually set foot in, for the drawer. */
+export async function countriesVisited(ownerId: string) {
+  const { data, error } = await supabase
+    .from('trips')
+    .select('trip_places(places(name, country_code, kind, continent))')
+    .eq('owner_id', ownerId);
+  if (error) throw error;
+
+  const byCode = new Map<string, { name: string; code: string; continent: string }>();
+  (data ?? []).forEach((t: any) =>
+    (t.trip_places ?? []).forEach((tp: any) => {
+      const pl = tp.places;
+      if (!pl) return;
+      if (!byCode.has(pl.country_code)) {
+        byCode.set(pl.country_code, {
+          // a city row carries its own name, so prefer a country-kind row for the label
+          name: pl.kind === 'country' ? pl.name : pl.country_code,
+          code: pl.country_code,
+          continent: pl.continent ?? '',
+        });
+      } else if (pl.kind === 'country') {
+        byCode.set(pl.country_code, { name: pl.name, code: pl.country_code, continent: pl.continent ?? '' });
+      }
+    })
+  );
+  return [...byCode.values()].sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/** ISO-3166 alpha-2 -> regional indicator flag emoji. */
+export function flagOf(code: string) {
+  if (!code || code.length !== 2) return '🏳️';
+  return String.fromCodePoint(...[...code.toUpperCase()].map((c) => 127397 + c.charCodeAt(0)));
 }
 
 export function fmtRange(start: string, end: string) {

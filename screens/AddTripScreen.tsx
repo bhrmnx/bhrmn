@@ -5,7 +5,9 @@ import {
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useAuth } from '../lib/auth';
-import { createTrip, searchPeople, searchPlaces, toISO, nights, type Place } from '../lib/trips';
+import {
+  createTrip, searchPeople, searchPlaces, citiesInCountry, toISO, nights, type Place,
+} from '../lib/trips';
 import { colors, type as t } from '../theme';
 
 type Person = { id: string; handle: string; display_name: string };
@@ -48,15 +50,53 @@ export default function AddTripScreen({ navigation }: any) {
     return () => clearTimeout(id);
   }, [cq, session?.user?.id]);
 
+  // Cities we can offer for each selected country, so a country pick always
+  // leads somewhere. Without this people log "Malaysia" and their city
+  // counter never moves.
+  const [suggested, setSuggested] = useState<Record<string, Place[]>>({});
+
+  useEffect(() => {
+    const countries = places.filter((p) => p.kind === 'country');
+    countries.forEach((c) => {
+      if (suggested[c.id]) return;
+      citiesInCountry(c.id)
+        .then((cs) => setSuggested((cur) => ({ ...cur, [c.id]: cs })))
+        .catch(() => {});
+    });
+  }, [places]);
+
   function addPlace(p: Place) {
-    if (!places.find((x) => x.id === p.id)) setPlaces([...places, p]);
+    setPlaces((cur) => (cur.find((x) => x.id === p.id) ? cur : [...cur, p]));
     setPq(''); setPResults([]);
   }
+
+  const cityCount = places.filter((p) => p.kind === 'city').length;
+
+  // countries the traveller picked but hasn't named a city inside yet
+  const countriesNeedingCities = places.filter(
+    (c) => c.kind === 'country' && !places.some((p) => p.kind === 'city' && p.parentId === c.id)
+  );
 
   async function save() {
     if (!session?.user) return;
     if (places.length === 0) { Alert.alert('Where did you go?', 'Add at least one place.'); return; }
     if (end < start) { Alert.alert('Check the dates', 'The end date is before the start date.'); return; }
+
+    // Soft gate, not a block. Countries-only is legitimate for a long overland
+    // trip, but most of the time it just means the traveller stopped early.
+    if (cityCount === 0) {
+      const proceed = await new Promise<boolean>((resolve) =>
+        Alert.alert(
+          'No cities added',
+          'Your cities counter will stay at zero and this trip will be vague on your timeline. Add the cities you actually stayed in?',
+          [
+            { text: 'Add cities', style: 'cancel', onPress: () => resolve(false) },
+            { text: 'Save anyway', onPress: () => resolve(true) },
+          ]
+        )
+      );
+      if (!proceed) return;
+    }
 
     setSaving(true);
     try {
@@ -120,9 +160,28 @@ export default function AddTripScreen({ navigation }: any) {
             ))}
           </View>
         )}
+        {countriesNeedingCities.map((c) => (
+          <View key={c.id} style={s.nudge}>
+            <Text style={s.nudgeTitle}>Where in {c.name}?</Text>
+            <Text style={s.nudgeBody}>
+              Countries alone don't say much. Cities are what make a passport specific.
+            </Text>
+            <View style={s.nudgeChips}>
+              {(suggested[c.id] ?? []).map((city) => (
+                <Pressable key={city.id} style={s.nudgeChip} onPress={() => addPlace(city)}>
+                  <Text style={s.nudgeChipText}>+ {city.name}</Text>
+                </Pressable>
+              ))}
+              {(suggested[c.id] ?? []).length === 0 && (
+                <Text style={s.nudgeBody}>No cities on file yet — search above.</Text>
+              )}
+            </View>
+          </View>
+        ))}
+
         <Text style={s.hint}>
-          Add places in the order you visited them, cities where you can — they count toward your
-          passport. Tap a chip to remove it.
+          Add places in the order you visited them. Cities count toward your passport
+          {cityCount > 0 ? ` — ${cityCount} so far` : ''}. Tap a chip to remove it.
         </Text>
 
         {/* WHEN */}
@@ -255,6 +314,19 @@ const s = StyleSheet.create({
     width: 16, height: 16, borderRadius: 8, textAlign: 'center', lineHeight: 16, overflow: 'hidden' },
   chipText: { ...t.body, fontSize: 13, color: colors.teal },
   chipX: { ...t.body, fontSize: 15, color: colors.teal, opacity: 0.7 },
+  nudge: {
+    marginTop: 12, padding: 14, borderRadius: 10,
+    borderWidth: 1, borderColor: colors.marigold,
+    backgroundColor: 'rgba(232,181,74,0.10)',
+  },
+  nudgeTitle: { ...t.body, fontSize: 14, fontWeight: '600', color: colors.ink },
+  nudgeBody: { ...t.body, fontSize: 12, color: colors.inkSoft, marginTop: 3 },
+  nudgeChips: { flexDirection: 'row', flexWrap: 'wrap', gap: 7, marginTop: 10 },
+  nudgeChip: {
+    borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.sand,
+    borderRadius: 16, paddingHorizontal: 11, paddingVertical: 6,
+  },
+  nudgeChipText: { ...t.body, fontSize: 13, color: colors.ink },
   dateRow: { flexDirection: 'row', gap: 12 },
   dateBox: {
     flex: 1, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.sand,

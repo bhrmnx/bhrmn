@@ -4,22 +4,18 @@ import { useFocusEffect } from '@react-navigation/native';
 import { useAuth } from '../lib/auth';
 import { supabase } from '../lib/supabase';
 import { DNA_OPTIONS } from '../lib/travelDna';
-import { listTrips, fmtRange, nights, type TripRow } from '../lib/trips';
+import { listTrips, countriesVisited, fmtRange, nights, type TripRow } from '../lib/trips';
+import PassportCard, { type PassportStats } from '../components/PassportCard';
 import { colors, type as t } from '../theme';
 
-type Stats = {
-  trip_count: number;
-  verified_trip_count: number;
-  country_count: number;
-  city_count: number;
-  days_travelled: number;
-};
+type Stats = PassportStats & { verified_trip_count: number };
 
 export default function ProfileScreen({ navigation }: any) {
   const { session, profile, signOut } = useAuth();
   const [homeCity, setHomeCity] = useState('—');
   const [stats, setStats] = useState<Stats | null>(null);
   const [trips, setTrips] = useState<TripRow[]>([]);
+  const [countries, setCountries] = useState<{ name: string; code: string; continent: string }[]>([]);
 
   // Refetch every time the tab regains focus, so a newly saved trip shows up.
   useFocusEffect(
@@ -38,6 +34,7 @@ export default function ProfileScreen({ navigation }: any) {
         .then(({ data }) => { if (alive && data) setStats(data as Stats); });
 
       listTrips(profile.id).then((r) => { if (alive) setTrips(r); }).catch(() => {});
+      countriesVisited(profile.id).then((c) => { if (alive) setCountries(c); }).catch(() => {});
 
       return () => { alive = false; };
     }, [profile?.id, profile?.home_city_id])
@@ -48,21 +45,25 @@ export default function ProfileScreen({ navigation }: any) {
 
   return (
     <ScrollView style={s.wrap} contentContainerStyle={s.inner}>
-      <Text style={s.kicker}>TRAVEL PASSPORT</Text>
-      <Text style={s.name}>{profile?.display_name ?? '…'}</Text>
-      <Text style={s.handle}>@{profile?.handle}</Text>
+      <PassportCard
+        name={profile?.display_name ?? '…'}
+        handle={profile?.handle ?? ''}
+        metaLine={[homeCity !== '—' ? homeCity : null, dnaLabels.slice(0, 2).join(' / ') || null]
+          .filter(Boolean).join(' · ')
+          .toUpperCase()}
+        travellerId={`TRV-${(profile?.id ?? '').slice(0, 4).toUpperCase()}-${(stats?.trip_count ?? 0).toString().padStart(2, '0')}`}
+        stats={stats}
+        countries={countries}
+      />
 
-      <View style={s.card}>
-        <View style={s.statsRow}>
-          <Stat n={stats?.country_count ?? 0} l="COUNTRIES" />
-          <Stat n={stats?.city_count ?? 0} l="CITIES" />
-          <Stat n={stats?.trip_count ?? 0} l="TRIPS" />
-          <Stat n={stats?.verified_trip_count ?? 0} l="VERIFIED" />
-        </View>
-        <View style={s.divider} />
-        <Row label="HOME" value={homeCity} />
-        <Row label="DAYS TRAVELLED" value={String(stats?.days_travelled ?? 0)} />
-        <Row label="EMAIL" value={session?.user.email ?? '—'} />
+      <View style={s.subStats}>
+        <Text style={s.subStat}>
+          {stats?.days_travelled ?? 0} days travelled
+        </Text>
+        <Text style={s.subStatDot}>·</Text>
+        <Text style={s.subStat}>
+          {stats?.verified_trip_count ?? 0} of {stats?.trip_count ?? 0} verified
+        </Text>
       </View>
 
       <Text style={s.section}>TRAVEL DNA</Text>
@@ -117,38 +118,12 @@ export default function ProfileScreen({ navigation }: any) {
   );
 }
 
-function Stat({ n, l }: { n: number; l: string }) {
-  return (
-    <View style={s.stat}>
-      <Text style={s.statN}>{n}</Text>
-      <Text style={s.statL}>{l}</Text>
-    </View>
-  );
-}
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <View style={s.row}>
-      <Text style={s.rowLabel}>{label}</Text>
-      <Text style={s.rowValue}>{value}</Text>
-    </View>
-  );
-}
-
 const s = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.paper },
-  inner: { padding: 28, paddingTop: 76, paddingBottom: 130 },
-  kicker: { ...t.mono, fontSize: 11, letterSpacing: 1.6, color: colors.teal, marginBottom: 8 },
-  name: { ...t.display, fontSize: 32, color: colors.indigo },
-  handle: { ...t.body, fontSize: 15, color: colors.inkSoft, marginBottom: 24 },
-  card: { backgroundColor: colors.sand, borderWidth: 1, borderColor: colors.hairline, borderRadius: 14, padding: 20 },
-  statsRow: { flexDirection: 'row', justifyContent: 'space-between' },
-  stat: { alignItems: 'center', flex: 1 },
-  statN: { ...t.display, fontSize: 24, color: colors.indigo },
-  statL: { ...t.mono, fontSize: 9, letterSpacing: 0.8, color: colors.inkSoft, marginTop: 3 },
-  divider: { height: 1, backgroundColor: colors.hairline, marginVertical: 18 },
-  row: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 7 },
-  rowLabel: { ...t.mono, fontSize: 11, letterSpacing: 1, color: colors.inkSoft },
-  rowValue: { ...t.body, fontSize: 14, color: colors.ink, flexShrink: 1, textAlign: 'right' },
+  inner: { padding: 20, paddingTop: 68, paddingBottom: 130 },
+  subStats: { flexDirection: 'row', gap: 8, justifyContent: 'center', marginTop: 14 },
+  subStat: { ...t.mono, fontSize: 10, letterSpacing: 0.6, color: colors.inkFaint },
+  subStatDot: { ...t.mono, fontSize: 10, color: colors.inkFaint },
   section: { ...t.mono, fontSize: 11, letterSpacing: 1.4, color: colors.inkSoft, marginTop: 28, marginBottom: 10 },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   chip: { borderWidth: 1, borderColor: colors.teal, borderRadius: 20, paddingHorizontal: 13, paddingVertical: 6 },

@@ -1,0 +1,243 @@
+[
+  {
+    "id": "ziro-valley-arunachal",
+    "type": "discovery",
+    "status": "ready",
+    "accent": "green",
+    "place": {
+      "name": "Ziro Valley",
+      "country": "India",
+      "code": "IN"
+    },
+    "title": "The valley that farms rice and fish in the same field",
+    "standfirst": "Arunachal Pradesh keeps its best valley behind a permit, which is most of why you have not heard of it.",
+    "body": [
+      "Ziro sits in the Lower Subansiri district of Arunachal Pradesh, a flat green bowl of paddy fields ringed by pine ridges. It is home to the Apatani, who grow rice and fish in the same flooded field — a system that uses no draught animals and no machinery, and which has kept the valley on UNESCO's tentative list for years.",
+      "The valley is small enough to cycle across in a morning and quiet enough that most travellers overshoot it entirely on the way to Tawang. That is the argument for going: not that it is spectacular the way the high Himalaya is spectacular, but that it is a working landscape people still live inside.",
+      "Late September brings the Ziro Festival of Music, running 24–27 September in 2026. Started in 2012 by Bobby Hano and Anup Kutty, it is hosted by the Apatani, builds its stages from local bamboo, and runs a zero-plastic policy. It is also when the valley is least like itself — worth going for, or worth avoiding, depending entirely on what you came for."
+    ],
+    "facts": [
+      {
+        "label": "Permit",
+        "value": "Inner Line Permit for Indian citizens; Protected Area Permit for foreign nationals"
+      },
+      {
+        "label": "Festival 2026",
+        "value": "24–27 September"
+      },
+      {
+        "label": "Getting there",
+        "value": "Nearest railhead Naharlagun, then onward by road"
+      }
+    ],
+    "tags": [
+      "northeast-india",
+      "slow-travel",
+      "cultural"
+    ],
+    "sources": [
+      {
+        "name": "Time Out India — Ziro Festival 2026",
+        "url": "https://www.timeout.com/india/news/ziro-festival-returns-with-four-days-of-music-in-arunachal-pradesh-071726"
+      },
+      {
+        "name": "Utsav (Government of India) — Ziro Festival",
+        "url": "https://utsav.gov.in/view-event/ziro-festival"
+      }
+    ],
+    "needsVerification": [],
+    "art": "ziro"
+  },
+  {
+    "id": "kazbegi-georgia",
+    "type": "discovery",
+    "status": "ready",
+    "accent": "teal",
+    "place": {
+      "name": "Kazbegi",
+      "country": "Georgia",
+      "code": "GE"
+    },
+    "title": "A three-hour drive from Tbilisi to a 5,000-metre wall",
+    "standfirst": "Georgia's most photographed church sits on a ridge most people reach before lunch. The paperwork changed this year.",
+    "body": [
+      "Stepantsminda — still widely called Kazbegi — is a small town at the top of the Georgian Military Highway, close enough to Tbilisi that people day-trip it and far enough into the Caucasus that they regret doing so.",
+      "Above the town, Gergeti Trinity Church stands alone on a ridge at roughly 2,170 metres with Mount Kazbek behind it at 5,054 metres. You can drive most of the way up. Walking it takes a couple of hours and changes the experience entirely.",
+      "Two things Indian travellers should know before booking. Georgia is an e-visa country: apply at evisa.gov.ge, around USD 20, roughly 5–7 working days, and there is now a mandatory DuVerify identity step after payment. Separately, since 1 January 2026 every tourist must carry health and accident insurance covering at least 30,000 GEL. Neither is difficult. Both catch people out at the airport."
+    ],
+    "facts": [
+      {
+        "label": "Visa",
+        "value": "e-visa at evisa.gov.ge · ~USD 20 · 5–7 working days"
+      },
+      {
+        "label": "Insurance",
+        "value": "Mandatory from 1 Jan 2026 · min 30,000 GEL cover"
+      },
+      {
+        "label": "From Tbilisi",
+        "value": "~155 km up the Georgian Military Highway"
+      },
+      {
+        "label": "Gergeti Trinity",
+        "value": "2,170 m · Mount Kazbek behind it at 5,054 m"
+      }
+    ],
+    "tags": [
+      "caucasus",
+      "mountains",
+      "visas"
+    ],
+    "sources": [
+      {
+        "name": "Wego — Georgia eVisa for Indians",
+        "url": "https://blog.wego.com/georgia-evisa-for-indians/"
+      },
+      {
+        "name": "Visafoto — Georgian visa for Indian passport holders 2026",
+        "url": "https://visafoto.com/georgia/visa-for-indian-citizens"
+      }
+    ],
+    "needsVerification": [],
+    "art": "kazbegi"
+  },
+  {
+    "id": "india-passport-2026-malaysia-kazakhstan",
+    "type": "dispatch",
+    "status": "ready",
+    "accent": "marigold",
+    "place": {
+      "name": "Malaysia",
+      "country": "Malaysia",
+      "code": "MY"
+    },
+    "title": "Two more doors just opened for the Indian passport",
+    "standfirst": "Malaysia and Kazakhstan now take Indian travellers without a visa. That changes what a long weekend can look like.",
+    "body": [
+      "India's passport moved up to 80th on the Henley index this year, from 85th. The headline number — around 55 destinations reachable visa-free, on arrival, or by e-visa — is roughly flat. What actually changed is which doors are open.",
+      "Malaysia now allows Indian citizens 30 days visa-free. Kazakhstan allows 14. Malaysia is the more consequential of the two: Kuala Lumpur is a short-haul flight from most Indian metros, which puts it inside long-weekend range for the first time without paperwork.",
+      "The useful reframe is not 'where can I go' but 'what can I now decide on a Thursday'. Visa-free access mostly buys spontaneity, and spontaneity is where most trips actually die."
+    ],
+    "facts": [
+      {
+        "label": "Malaysia",
+        "value": "30 days visa-free"
+      },
+      {
+        "label": "Kazakhstan",
+        "value": "14 days visa-free"
+      },
+      {
+        "label": "Passport rank",
+        "value": "80th, up from 85th"
+      }
+    ],
+    "tags": [
+      "visas",
+      "india",
+      "planning"
+    ],
+    "sources": [
+      {
+        "name": "Gulf News — visa-free travel for Indian passport holders in 2026",
+        "url": "https://gulfnews.com/world/asia/india/visa-free-travel-for-indian-passport-holders-in-2026-complete-list-of-55-destinations-1.500407454"
+      }
+    ],
+    "staleAfter": "2027-03-31",
+    "needsVerification": [],
+    "art": "passport"
+  },
+  {
+    "id": "ladakh-or-spiti",
+    "type": "thisOrThat",
+    "status": "ready",
+    "accent": "terracotta",
+    "place": {
+      "name": "Ladakh",
+      "country": "India",
+      "code": "IN"
+    },
+    "title": "Ladakh or Spiti",
+    "standfirst": "Two high-altitude deserts, one long argument. People who have done both rarely rank them the way first-timers expect.",
+    "question": "You have ten days and one shot at the Himalaya. Which one?",
+    "optionA": {
+      "name": "Ladakh",
+      "pitch": "Bigger, higher, easier to reach. You can fly into Leh and be on a high pass the next day.",
+      "against": "That accessibility is the problem. The main circuit is busy, and altitude sickness hits people who skipped acclimatisation because the flight made it feel easy."
+    },
+    "optionB": {
+      "name": "Spiti",
+      "pitch": "Harder to get to, and quieter for exactly that reason. The road in does the acclimatising for you.",
+      "against": "No airport. The Manali–Kaza route over Kunzum La typically opens late May to mid-June and closes by late October, and the Gramphu–Losar stretch is broken road with water crossings."
+    },
+    "body": [
+      "The honest split: Ladakh is the better first trip and Spiti is the better second one. Ladakh gives you scale immediately. Spiti gives you the version of the same landscape where you can hear it.",
+      "One practical note that decides it for a lot of people — Spiti's window is narrower than Ladakh's, and the pass status changes with snowfall. Check Border Roads Organisation advisories close to your dates rather than trusting a blog from last season."
+    ],
+    "facts": [
+      {
+        "label": "Leh",
+        "value": "~3,500 m · has an airport"
+      },
+      {
+        "label": "Kaza",
+        "value": "~3,800 m · road access only"
+      },
+      {
+        "label": "Kunzum La window",
+        "value": "Typically late May/early June to late October"
+      }
+    ],
+    "tags": [
+      "himalaya",
+      "india",
+      "high-altitude"
+    ],
+    "sources": [
+      {
+        "name": "WanderOn — Kunzum Pass 2026 guide",
+        "url": "https://wanderon.in/blogs/kunzum-pass-detail-guide"
+      },
+      {
+        "name": "WanderOn — Spiti Valley road conditions 2026",
+        "url": "https://wanderon.in/blogs/road-condition-in-spiti-valley"
+      }
+    ],
+    "needsVerification": [],
+    "art": "himalaya"
+  },
+  {
+    "id": "voice-seychelles-three-islands",
+    "type": "voice",
+    "status": "draft",
+    "accent": "violet",
+    "place": {
+      "name": "Seychelles",
+      "country": "Seychelles",
+      "code": "SC"
+    },
+    "title": "Three islands in four days",
+    "standfirst": "A first-hand account of island-hopping Mahé, Praslin and La Digue on a short trip.",
+    "quote": "",
+    "author": {
+      "handle": "bhrmn",
+      "name": "",
+      "verifiedTrip": true,
+      "tripDates": "30 Jul – 2 Aug 2026"
+    },
+    "rating": null,
+    "body": [],
+    "facts": [],
+    "tags": [
+      "indian-ocean",
+      "island-hopping",
+      "short-trip"
+    ],
+    "sources": [],
+    "needsVerification": [
+      "DRAFT — needs Yash's actual words. Do not publish until the quote and body are written first-hand.",
+      "First card backed by a verified trip on the platform: the author genuinely went, on the dates shown. Write it as you experienced it, including what you would not do again."
+    ],
+    "art": "island"
+  }
+]
