@@ -13,7 +13,7 @@ type Stats = {
   days_travelled: number;
 };
 
-export default function HomeScreen() {
+export default function ProfileScreen() {
   const { session, profile, signOut } = useAuth();
   const [homeCity, setHomeCity] = useState<string>('—');
   const [stats, setStats] = useState<Stats | null>(null);
@@ -103,7 +103,7 @@ function Row({ label, value }: { label: string; value: string }) {
 
 const s = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.paper },
-  inner: { padding: 28, paddingTop: 76, paddingBottom: 48 },
+  inner: { padding: 28, paddingTop: 76, paddingBottom: 120 },
   kicker: { ...t.mono, fontSize: 11, letterSpacing: 1.6, color: colors.teal, marginBottom: 8 },
   name: { ...t.display, fontSize: 32, color: colors.indigo },
   handle: { ...t.body, fontSize: 15, color: colors.inkSoft, marginBottom: 24 },

@@ -1,43 +1,42 @@
 import { StatusBar } from 'expo-status-bar';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AuthProvider, useAuth } from './lib/auth';
 import SignInScreen from './screens/SignInScreen';
 import OnboardingScreen from './screens/OnboardingScreen';
-import HomeScreen from './screens/HomeScreen';
+import RootTabs from './navigation/RootTabs';
 import { colors } from './theme';
+
+function Loading() {
+  return (
+    <View style={styles.center}>
+      <ActivityIndicator color={colors.indigo} />
+    </View>
+  );
+}
 
 function Root() {
   const { session, profile, loading } = useAuth();
 
-  if (loading) {
-    return (
-      <View style={styles.center}>
-        <ActivityIndicator color={colors.indigo} />
-      </View>
-    );
-  }
-
+  if (loading) return <Loading />;
   if (!session) return <SignInScreen />;
 
-  // Profile row exists from the signup trigger, but it is a stub until the
-  // traveller picks a home city and their Travel DNA.
-  if (!profile) {
-    return (
-      <View style={styles.center}>
-        <ActivityIndicator color={colors.indigo} />
-      </View>
-    );
-  }
+  // The profile row is created by a DB trigger at signup, but it is a stub
+  // until the traveller picks a home city and their Travel DNA.
+  if (!profile) return <Loading />;
+
   const needsOnboarding = !profile.home_city_id || (profile.dna_declared ?? []).length === 0;
-  return needsOnboarding ? <OnboardingScreen /> : <HomeScreen />;
+  return needsOnboarding ? <OnboardingScreen /> : <RootTabs />;
 }
 
 export default function App() {
   return (
-    <AuthProvider>
-      <Root />
-      <StatusBar style="dark" />
-    </AuthProvider>
+    <SafeAreaProvider>
+      <AuthProvider>
+        <Root />
+        <StatusBar style="dark" />
+      </AuthProvider>
+    </SafeAreaProvider>
   );
 }
 
