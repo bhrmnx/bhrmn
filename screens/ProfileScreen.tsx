@@ -75,9 +75,14 @@ export default function ProfileScreen({ navigation }: any) {
 
       <View style={s.tripHead}>
         <Text style={s.section}>TIMELINE</Text>
-        <Pressable style={s.addBtn} onPress={() => navigation.navigate('addTrip')}>
-          <Text style={s.addBtnText}>+ Add a trip</Text>
-        </Pressable>
+        <View style={s.headBtns}>
+          <Pressable style={s.verifyBtn} onPress={() => navigation.navigate('verifyTrip')}>
+            <Text style={s.verifyBtnText}>✓ Verify</Text>
+          </Pressable>
+          <Pressable style={s.addBtn} onPress={() => navigation.navigate('addTrip')}>
+            <Text style={s.addBtnText}>+ Add a trip</Text>
+          </Pressable>
+        </View>
       </View>
 
       {trips.length === 0 ? (
@@ -130,11 +135,17 @@ const s = StyleSheet.create({
   chipText: { ...t.body, fontSize: 13, color: colors.teal },
   empty: { ...t.body, fontSize: 13, color: colors.inkFaint },
   tripHead: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  headBtns: { flexDirection: 'row', gap: 8, marginTop: 24 },
   addBtn: {
-    marginTop: 24, borderWidth: 1, borderColor: colors.indigo, borderRadius: 20,
+    borderWidth: 1, borderColor: colors.indigo, borderRadius: 20,
     paddingHorizontal: 14, paddingVertical: 7,
   },
   addBtnText: { ...t.body, fontSize: 13, color: colors.indigo, fontWeight: '600' },
+  verifyBtn: {
+    backgroundColor: colors.teal, borderRadius: 20,
+    paddingHorizontal: 14, paddingVertical: 8,
+  },
+  verifyBtnText: { ...t.body, fontSize: 13, color: colors.sand, fontWeight: '600' },
   note: { ...t.body, fontSize: 13, lineHeight: 20, color: colors.inkSoft },
   trip: {
     backgroundColor: colors.sand, borderWidth: 1, borderColor: colors.hairline,

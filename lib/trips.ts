@@ -83,6 +83,8 @@ export async function createTrip(input: {
   visibility: 'public' | 'followers' | 'private';
   placeIds: string[];
   companionIds: string[];
+  /** Set when this trip came from a parsed ticket — turns it into a verified trip. */
+  draftId?: string | null;
 }) {
   const { data: trip, error } = await supabase
     .from('trips')
@@ -111,6 +113,16 @@ export async function createTrip(input: {
       }));
       const { error: ce } = await supabase.from('trip_companions').insert(rows);
       if (ce) throw ce;
+    }
+    // Verification is server-side only. The client cannot set is_verified —
+    // a database trigger forces it false — so this RPC is the only way a trip
+    // becomes verified, and only against a real parsed document.
+    if (input.draftId) {
+      const { error: ve } = await supabase.rpc('confirm_trip_from_draft', {
+        _draft_id: input.draftId,
+        _trip_id: trip.id,
+      });
+      if (ve) throw ve;
     }
   } catch (e) {
     await supabase.from('trips').delete().eq('id', trip.id);
@@ -149,6 +161,37 @@ export async function listTrips(ownerId: string): Promise<TripRow[]> {
       status: tc.status,
     })),
   }));
+}
+
+/**
+ * Resolve a place from a parsed ticket. Airport code first (unambiguous),
+ * then a known alias (Bangalore -> Bengaluru), then the name itself.
+ * Returns null rather than a wrong guess.
+ */
+export async function resolvePlace(
+  opts: { code?: string | null; city?: string | null }
+): Promise<Place | null> {
+  const sel = 'id, name, country_code, kind, parent_id, parent:parent_id(name)';
+
+  if (opts.code) {
+    const { data } = await supabase.from('places').select(sel)
+      .eq('iata', opts.code.toUpperCase()).limit(1).maybeSingle();
+    if (data) return toPlace(data);
+  }
+
+  const city = opts.city?.trim();
+  if (!city) return null;
+
+  const { data: alias } = await supabase.from('place_aliases')
+    .select('place_id').eq('alias', city.toLowerCase()).limit(1).maybeSingle();
+  if (alias?.place_id) {
+    const { data } = await supabase.from('places').select(sel).eq('id', alias.place_id).single();
+    if (data) return toPlace(data);
+  }
+
+  const { data: byName } = await supabase.from('places').select(sel)
+    .eq('kind', 'city').ilike('name', city).limit(1).maybeSingle();
+  return byName ? toPlace(byName) : null;
 }
 
 /** Distinct countries the traveller has actually set foot in, for the drawer. */

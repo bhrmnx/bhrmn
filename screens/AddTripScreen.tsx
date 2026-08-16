@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator, Alert, FlatList, KeyboardAvoidingView, Platform, Pressable,
   ScrollView, StyleSheet, Text, TextInput, View,
@@ -6,15 +6,20 @@ import {
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useAuth } from '../lib/auth';
 import {
-  createTrip, searchPeople, searchPlaces, citiesInCountry, toISO, nights, type Place,
+  createTrip, searchPeople, searchPlaces, citiesInCountry, resolvePlace, toISO, nights, type Place,
 } from '../lib/trips';
+import { readableSaveError } from '../lib/verify';
 import { colors, type as t } from '../theme';
 
 type Person = { id: string; handle: string; display_name: string };
 type Vis = 'public' | 'followers' | 'private';
 
-export default function AddTripScreen({ navigation }: any) {
+export default function AddTripScreen({ navigation, route }: any) {
   const { session } = useAuth();
+  const prefill = route?.params?.prefill as
+    | { startDate?: string | null; endDate?: string | null; destination?: any; origin?: any;
+        carrier?: string | null; reference?: string | null }
+    | undefined;
 
   const [places, setPlaces] = useState<Place[]>([]);
   const [pq, setPq] = useState('');
@@ -70,6 +75,46 @@ export default function AddTripScreen({ navigation }: any) {
     setPq(''); setPResults([]);
   }
 
+  // Seed from a parsed ticket, once. Everything stays editable — the parser
+  // proposes, the traveller decides.
+  const seeded = useRef(false);
+  useEffect(() => {
+    if (!prefill || seeded.current) return;
+    seeded.current = true;
+
+    // A boarding pass usually carries one date. Default the end to the same
+    // day rather than leaving it at today — otherwise a January ticket creates
+    // a trip running until now, and it would verify.
+    const startD = prefill.startDate ? new Date(prefill.startDate + 'T00:00:00') : null;
+    const endD = prefill.endDate ? new Date(prefill.endDate + 'T00:00:00') : null;
+    if (startD && !isNaN(startD.getTime())) {
+      setStart(startD);
+      setEnd(endD && !isNaN(endD.getTime()) ? endD : startD);
+    } else if (endD && !isNaN(endD.getTime())) {
+      setEnd(endD);
+    }
+    const note = [prefill.carrier, prefill.reference].filter(Boolean).join(' · ');
+    if (note) setNotes(note);
+
+    // Resolve in order so origin lands before destination in the chip list.
+    (async () => {
+      const wanted = [prefill.origin, prefill.destination].filter(Boolean) as any[];
+      const missed: string[] = [];
+      for (const w of wanted) {
+        const hit = await resolvePlace({ code: w?.code, city: w?.city }).catch(() => null);
+        if (hit) addPlace(hit);
+        else if (w?.city) missed.push(w.city);
+      }
+      if (missed.length) {
+        Alert.alert(
+          'One place needs a hand',
+          `The ticket says ${missed.join(' and ')}, which isn't in our places list under that name. ` +
+          `Search for it above and pick the right one — everything else is filled in.`
+        );
+      }
+    })();
+  }, [prefill]);
+
   const cityCount = places.filter((p) => p.kind === 'city').length;
 
   // countries the traveller picked but hasn't named a city inside yet
@@ -77,10 +122,28 @@ export default function AddTripScreen({ navigation }: any) {
     (c) => c.kind === 'country' && !places.some((p) => p.kind === 'city' && p.parentId === c.id)
   );
 
+  const n = nights(toISO(start), toISO(end));
+
   async function save() {
     if (!session?.user) return;
     if (places.length === 0) { Alert.alert('Where did you go?', 'Add at least one place.'); return; }
     if (end < start) { Alert.alert('Check the dates', 'The end date is before the start date.'); return; }
+
+    // A silently wrong trip length quietly corrupts the passport, so make the
+    // traveller look at it once.
+    if (n > 60) {
+      const ok = await new Promise<boolean>((resolve) =>
+        Alert.alert(
+          `That is a ${n}-night trip`,
+          'Long trips are real, but this is often a date left at today by mistake. Are these dates right?',
+          [
+            { text: 'Let me check', style: 'cancel', onPress: () => resolve(false) },
+            { text: 'Yes, that is right', onPress: () => resolve(true) },
+          ]
+        )
+      );
+      if (!ok) return;
+    }
 
     // Soft gate, not a block. Countries-only is legitimate for a long overland
     // trip, but most of the time it just means the traveller stopped early.
@@ -109,24 +172,57 @@ export default function AddTripScreen({ navigation }: any) {
         visibility: vis,
         placeIds: places.map((p) => p.id),
         companionIds: companions.map((c) => c.id),
+        draftId: route?.params?.draftId ?? null,
       });
       navigation.goBack();
     } catch (e: any) {
-      Alert.alert('Could not save the trip', e.message ?? String(e));
+      const { message, mismatch } = readableSaveError(e);
+      if (mismatch) {
+        // The trip was rolled back. Offer the honest fallback rather than
+        // silently downgrading a trip the traveller thinks is verified.
+        Alert.alert('Ticket does not match these dates', message, [
+          { text: 'Fix the dates', style: 'cancel' },
+          {
+            text: 'Save unverified',
+            onPress: async () => {
+              setSaving(true);
+              try {
+                await createTrip({
+                  ownerId: session!.user.id,
+                  title: title.trim() || null,
+                  startDate: toISO(start),
+                  endDate: toISO(end),
+                  notes: notes.trim() || null,
+                  visibility: vis,
+                  placeIds: places.map((p) => p.id),
+                  companionIds: companions.map((c) => c.id),
+                  draftId: null,
+                });
+                navigation.goBack();
+              } catch (e2: any) {
+                Alert.alert('Could not save the trip', e2.message ?? String(e2));
+              } finally {
+                setSaving(false);
+              }
+            },
+          },
+        ]);
+      } else {
+        Alert.alert('Could not save the trip', message);
+      }
     } finally {
       setSaving(false);
     }
   }
-
-  const n = nights(toISO(start), toISO(end));
 
   return (
     <KeyboardAvoidingView style={s.wrap} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <ScrollView contentContainerStyle={s.inner} keyboardShouldPersistTaps="handled">
         <Text style={s.h}>Add a trip</Text>
         <Text style={s.sub}>
-          Every trip you log makes your passport harder to fake. You can attach a ticket later to
-          get it verified.
+          {route?.params?.draftId
+            ? 'Read off your ticket. Check every field — saving this will mark the trip verified.'
+            : 'Every trip you log makes your passport harder to fake. You can attach a ticket later to get it verified.'}
         </Text>
 
         {/* WHERE */}
