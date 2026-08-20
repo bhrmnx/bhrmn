@@ -11,6 +11,7 @@ import {
   View,
 } from 'react-native';
 import { supabase } from '../lib/supabase';
+import PolicySheet from '../components/PolicySheet';
 import { colors, type as t } from '../theme';
 
 export default function SignInScreen() {
@@ -18,11 +19,22 @@ export default function SignInScreen() {
   const [code, setCode] = useState('');
   const [stage, setStage] = useState<'email' | 'code'>('email');
   const [busy, setBusy] = useState(false);
+  const [agreed, setAgreed] = useState(false);
+  const [showPolicy, setShowPolicy] = useState(false);
 
   async function sendCode() {
     const clean = email.trim().toLowerCase();
     if (!/^\S+@\S+\.\S+$/.test(clean)) {
       Alert.alert('Check the email', 'That address does not look right.');
+      return;
+    }
+    // DPDP requires consent to be a clear affirmative action, not a pre-ticked
+    // box or something buried in a footer.
+    if (!agreed) {
+      Alert.alert(
+        'One thing first',
+        'Please confirm you are 18 or over and agree to how Bhrmn handles your data.'
+      );
       return;
     }
     setBusy(true);
@@ -76,6 +88,17 @@ export default function SignInScreen() {
               textContentType="emailAddress"
               editable={!busy}
             />
+            <Pressable style={s.consent} onPress={() => setAgreed((a) => !a)}>
+              <View style={[s.box, agreed && s.boxOn]}>
+                {agreed && <Text style={s.tick}>✓</Text>}
+              </View>
+              <Text style={s.consentText}>
+                I am 18 or over, and I agree to Bhrmn storing my trips and any travel
+                documents I upload, as described in the{' '}
+                <Text style={s.link} onPress={() => setShowPolicy(true)}>privacy notice</Text>.
+              </Text>
+            </Pressable>
+
             <Pressable style={[s.btn, busy && s.btnOff]} onPress={sendCode} disabled={busy}>
               {busy ? (
                 <ActivityIndicator color={colors.sand} />
@@ -108,11 +131,12 @@ export default function SignInScreen() {
               )}
             </Pressable>
             <Pressable onPress={() => { setStage('email'); setCode(''); }} disabled={busy}>
-              <Text style={s.link}>Use a different email</Text>
+              <Text style={s.altLink}>Use a different email</Text>
             </Pressable>
           </>
         )}
       </View>
+      <PolicySheet visible={showPolicy} onClose={() => setShowPolicy(false)} />
     </KeyboardAvoidingView>
   );
 }
@@ -144,5 +168,14 @@ const s = StyleSheet.create({
   },
   btnOff: { opacity: 0.6 },
   btnText: { ...t.body, color: colors.sand, fontWeight: '600' },
-  link: { ...t.body, fontSize: 13, color: colors.inkSoft, textAlign: 'center', marginTop: 18 },
+  link: { color: colors.teal, textDecorationLine: 'underline' },
+  altLink: { ...t.body, fontSize: 13, color: colors.inkSoft, textAlign: 'center', marginTop: 18 },
+  consent: { flexDirection: 'row', gap: 10, alignItems: 'flex-start', marginBottom: 20 },
+  box: {
+    width: 20, height: 20, borderRadius: 5, borderWidth: 1, borderColor: colors.hairline,
+    alignItems: 'center', justifyContent: 'center', marginTop: 1,
+  },
+  boxOn: { backgroundColor: colors.teal, borderColor: colors.teal },
+  tick: { color: colors.sand, fontSize: 13, lineHeight: 16 },
+  consentText: { ...t.body, fontSize: 12.5, lineHeight: 19, color: colors.inkSoft, flex: 1 },
 });

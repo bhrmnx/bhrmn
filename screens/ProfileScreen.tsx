@@ -1,11 +1,12 @@
 import React, { useCallback, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { useAuth } from '../lib/auth';
 import { supabase } from '../lib/supabase';
 import { DNA_OPTIONS } from '../lib/travelDna';
 import { listTrips, countriesVisited, fmtRange, nights, type TripRow } from '../lib/trips';
 import PassportCard, { type PassportStats } from '../components/PassportCard';
+import PolicySheet from '../components/PolicySheet';
 import { colors, type as t } from '../theme';
 
 type Stats = PassportStats & { verified_trip_count: number };
@@ -16,6 +17,7 @@ export default function ProfileScreen({ navigation }: any) {
   const [stats, setStats] = useState<Stats | null>(null);
   const [trips, setTrips] = useState<TripRow[]>([]);
   const [countries, setCountries] = useState<{ name: string; code: string; continent: string }[]>([]);
+  const [showPolicy, setShowPolicy] = useState(false);
 
   // Refetch every time the tab regains focus, so a newly saved trip shows up.
   useFocusEffect(
@@ -119,6 +121,35 @@ export default function ProfileScreen({ navigation }: any) {
       <Pressable style={s.btn} onPress={signOut}>
         <Text style={s.btnText}>Sign out</Text>
       </Pressable>
+
+      <Pressable style={s.privacyRow} onPress={() => setShowPolicy(true)}>
+        <Text style={s.privacyLink}>How Bhrmn handles your data</Text>
+      </Pressable>
+
+      <Pressable
+        onPress={() =>
+          Alert.alert(
+            'Delete your account',
+            'This erases your profile, every trip, every document you uploaded and all verification records. It cannot be undone.',
+            [
+              { text: 'Keep my account', style: 'cancel' },
+              {
+                text: 'Delete everything',
+                style: 'destructive',
+                onPress: async () => {
+                  const { error } = await supabase.rpc('delete_my_account');
+                  if (error) Alert.alert('Could not delete', error.message);
+                  else await signOut();
+                },
+              },
+            ]
+          )
+        }
+      >
+        <Text style={s.deleteLink}>Delete my account</Text>
+      </Pressable>
+
+      <PolicySheet visible={showPolicy} onClose={() => setShowPolicy(false)} />
     </ScrollView>
   );
 }
@@ -164,4 +195,7 @@ const s = StyleSheet.create({
     borderRadius: 10, paddingVertical: 14, alignItems: 'center',
   },
   btnText: { ...t.body, color: colors.ink },
+  privacyRow: { marginTop: 24, alignItems: 'center' },
+  privacyLink: { ...t.body, fontSize: 13, color: colors.teal },
+  deleteLink: { ...t.body, fontSize: 13, color: colors.terracotta, textAlign: 'center', marginTop: 14 },
 });
