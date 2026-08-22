@@ -2,6 +2,8 @@ import raw from '../content/cards.json';
 
 export type Source = { name: string; url: string };
 export type Fact = { label: string; value: string };
+export type Day = { day: number; place: string; note?: string };
+export type Photo = { url?: string; local?: string; credit: string; creditUrl?: string; source?: string };
 
 export type Card = {
   id: string;
@@ -16,11 +18,13 @@ export type Card = {
   tags?: string[];
   sources?: Source[];
   art?: string;
+  photo?: Photo | null;
   needsVerification: string[];
   staleAfter?: string;
   question?: string;
   optionA?: { name: string; pitch: string; against: string };
   optionB?: { name: string; pitch: string; against: string };
+  days?: Day[];
   quote?: string;
   author?: { handle: string; name: string; verifiedTrip: boolean; tripDates: string };
 };

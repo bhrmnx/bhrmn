@@ -58,29 +58,29 @@
       "country": "Georgia",
       "code": "GE"
     },
-    "title": "A three-hour drive from Tbilisi to a 5,000-metre wall",
+    "title": "Three hours from Tbilisi to the wall of the Caucasus",
     "standfirst": "Georgia's most photographed church sits on a ridge most people reach before lunch. The paperwork changed this year.",
     "body": [
       "Stepantsminda — still widely called Kazbegi — is a small town at the top of the Georgian Military Highway, close enough to Tbilisi that people day-trip it and far enough into the Caucasus that they regret doing so.",
-      "Above the town, Gergeti Trinity Church stands alone on a ridge at roughly 2,170 metres with Mount Kazbek behind it at 5,054 metres. You can drive most of the way up. Walking it takes a couple of hours and changes the experience entirely.",
+      "Above the town, Gergeti Trinity Church stands alone on a ridge with Mount Kazbek rising behind it. You can drive most of the way up. Walking it takes a couple of hours and changes the experience entirely.",
       "Two things Indian travellers should know before booking. Georgia is an e-visa country: apply at evisa.gov.ge, around USD 20, roughly 5–7 working days, and there is now a mandatory DuVerify identity step after payment. Separately, since 1 January 2026 every tourist must carry health and accident insurance covering at least 30,000 GEL. Neither is difficult. Both catch people out at the airport."
     ],
     "facts": [
       {
-        "label": "Visa",
-        "value": "e-visa at evisa.gov.ge · ~USD 20 · 5–7 working days"
-      },
-      {
         "label": "Insurance",
-        "value": "Mandatory from 1 Jan 2026 · min 30,000 GEL cover"
+        "value": "Mandatory from 1 Jan 2026 · min 30,000 GEL (~USD 11,000) · must cover the full stay"
       },
       {
-        "label": "From Tbilisi",
-        "value": "~155 km up the Georgian Military Highway"
+        "label": "Proof",
+        "value": "Physical or electronic, in Georgian or English · checked at the border"
+      },
+      {
+        "label": "Visa",
+        "value": "e-visa at evisa.gov.ge · ~USD 20 · 5-7 working days"
       },
       {
         "label": "Gergeti Trinity",
-        "value": "2,170 m · Mount Kazbek behind it at 5,054 m"
+        "value": "On a ridge above Stepantsminda, with Mount Kazbek behind it"
       }
     ],
     "tags": [
@@ -90,12 +90,12 @@
     ],
     "sources": [
       {
-        "name": "Wego — Georgia eVisa for Indians",
-        "url": "https://blog.wego.com/georgia-evisa-for-indians/"
+        "name": "U.S. Embassy in Georgia — insurance required for all tourists from 1 Jan 2026",
+        "url": "https://ge.usembassy.gov/georgia-to-require-insurance-for-all-tourists-starting-1-1-2026/"
       },
       {
-        "name": "Visafoto — Georgian visa for Indian passport holders 2026",
-        "url": "https://visafoto.com/georgia/visa-for-indian-citizens"
+        "name": "Wego — Georgia eVisa for Indians",
+        "url": "https://blog.wego.com/georgia-evisa-for-indians/"
       }
     ],
     "needsVerification": [],
@@ -111,41 +111,64 @@
       "country": "Malaysia",
       "code": "MY"
     },
-    "title": "Two more doors just opened for the Indian passport",
-    "standfirst": "Malaysia and Kazakhstan now take Indian travellers without a visa. That changes what a long weekend can look like.",
+    "title": "The Malaysia window closes on 31 December",
+    "standfirst": "Indians still enter Malaysia visa-free for 30 days — but the exemption is dated, and there is a form most people miss.",
     "body": [
-      "India's passport moved up to 80th on the Henley index this year, from 85th. The headline number — around 55 destinations reachable visa-free, on arrival, or by e-visa — is roughly flat. What actually changed is which doors are open.",
-      "Malaysia now allows Indian citizens 30 days visa-free. Kazakhstan allows 14. Malaysia is the more consequential of the two: Kuala Lumpur is a short-haul flight from most Indian metros, which puts it inside long-weekend range for the first time without paperwork.",
-      "The useful reframe is not 'where can I go' but 'what can I now decide on a Thursday'. Visa-free access mostly buys spontaneity, and spontaneity is where most trips actually die."
+      "Malaysia has waived entry visas for Indian nationals since December 2023, and the Home Ministry has extended that waiver to 31 December 2026. It covers tourism, business, social visits and transit for up to 30 days. It does not cover work or study, cannot be extended, and cannot be converted to another visa type once you are in the country.",
+      "The part that catches people is the Malaysia Digital Arrival Card. It is mandatory, it is free, and it must be submitted online before you travel — guidance says at least three days ahead. Turning up without it is not a formality you sort out at the counter.",
+      "You will also need a passport valid six months beyond entry, a confirmed onward or return ticket inside the 30 days, and an address you can show. None of it is difficult. All of it is checked.",
+      "Worth knowing rather than assuming: this is an extension with an end date on it, not a permanent change. If you are planning a Malaysia trip for 2027, check again before you book."
     ],
     "facts": [
       {
-        "label": "Malaysia",
-        "value": "30 days visa-free"
+        "label": "Stay",
+        "value": "Up to 30 days, visa-free · tourism, business, social, transit"
       },
       {
-        "label": "Kazakhstan",
-        "value": "14 days visa-free"
+        "label": "Valid until",
+        "value": "31 December 2026 — an extension, not a permanent rule"
       },
       {
-        "label": "Passport rank",
-        "value": "80th, up from 85th"
+        "label": "Mandatory",
+        "value": "Malaysia Digital Arrival Card (MDAC), submitted online ~3 days before arrival"
+      },
+      {
+        "label": "Also required",
+        "value": "Passport valid 6 months · confirmed onward ticket within 30 days"
+      },
+      {
+        "label": "Not covered",
+        "value": "Work or study. No extensions, no conversion in-country."
       }
     ],
     "tags": [
       "visas",
       "india",
+      "malaysia",
       "planning"
     ],
     "sources": [
       {
-        "name": "Gulf News — visa-free travel for Indian passport holders in 2026",
-        "url": "https://gulfnews.com/world/asia/india/visa-free-travel-for-indian-passport-holders-in-2026-complete-list-of-55-destinations-1.500407454"
+        "name": "Ministry of Foreign Affairs Malaysia — High Commission, New Delhi (official)",
+        "url": "https://www.kln.gov.my/web/ind_new-delhi/requirement_foreigner"
+      },
+      {
+        "name": "EY Tax Alert — Malaysia extends visa exemption for India and China nationals",
+        "url": "https://www.ey.com/en_gl/technical/tax-alerts/malaysia-extends-visa-exemption-period-for-india-and-china-nationals"
+      },
+      {
+        "name": "Business Standard — exemption extended to Dec 2026",
+        "url": "https://www.business-standard.com/finance/personal-finance/malaysia-extends-visa-exemption-for-indian-nationals-until-dec-2026-124122300164_1.html"
       }
     ],
-    "staleAfter": "2027-03-31",
+    "staleAfter": "2026-12-31",
     "needsVerification": [],
-    "art": "passport"
+    "art": "passport",
+    "photo": {
+      "local": "kl-petronas",
+      "credit": "Yash Thakur",
+      "source": "own"
+    }
   },
   {
     "id": "ladakh-or-spiti",
@@ -177,15 +200,15 @@
     "facts": [
       {
         "label": "Leh",
-        "value": "~3,500 m · has an airport"
+        "value": "Has an airport — you can arrive at altitude in hours"
       },
       {
         "label": "Kaza",
-        "value": "~3,800 m · road access only"
+        "value": "Road access only"
       },
       {
         "label": "Kunzum La window",
-        "value": "Typically late May/early June to late October"
+        "value": "Typically late May/early June to late October, snow dependent"
       }
     ],
     "tags": [
@@ -238,6 +261,529 @@
       "DRAFT — needs Yash's actual words. Do not publish until the quote and body are written first-hand.",
       "First card backed by a verified trip on the platform: the author genuinely went, on the dates shown. Write it as you experienced it, including what you would not do again."
     ],
+    "art": "island",
+    "photo": {
+      "local": "seychelles-mahe",
+      "credit": "Yash Thakur",
+      "source": "own"
+    }
+  },
+  {
+    "id": "muscat-oman-muttrah",
+    "type": "discovery",
+    "status": "ready",
+    "accent": "terracotta",
+    "place": {
+      "name": "Muscat",
+      "country": "Oman",
+      "code": "OM"
+    },
+    "title": "The Gulf city that never traded its old town for towers",
+    "standfirst": "Four hours from most Indian metros, and the least Dubai-like place on the Arabian peninsula.",
+    "body": [
+      "Muscat is low. There is a building height limit and a rule about white walls, so the city runs along the coast in a thin line of flat-roofed houses between black volcanic hills and the sea rather than piling upward. After the Gulf's glass cities, the effect is disorienting in a good way.",
+      "The Muttrah corniche is where you start. A working harbour on one side, the old souq on the other, Portuguese-era watchtowers on the ridges above, and a walk you can do at sunset in half an hour. The souq sells frankincense because Oman actually produces it, not because tourists expect it.",
+      "The practical case for Oman over its neighbours: it is close, it is cheap by Gulf standards, and it has mountains and wadis within a couple of hours of the capital. The practical case against: summer is genuinely punishing, and almost everything worth doing is outdoors."
+    ],
+    "facts": [
+      {
+        "label": "Visa",
+        "value": "e-visa only for Indian passport holders — visa on arrival was withdrawn. 10-day and 30-day tourist options."
+      },
+      {
+        "label": "Processing",
+        "value": "Typically 3-5 working days · carry a printed copy for check-in"
+      },
+      {
+        "label": "Passport",
+        "value": "Valid at least 6 months from arrival"
+      },
+      {
+        "label": "Shortcut",
+        "value": "Holders of a valid US, UK, Canada, Australia, Japan or Schengen visa or residence permit may qualify for 14 days visa-free"
+      },
+      {
+        "label": "When",
+        "value": "October to March. Summer on this coast is not a shoulder season, it is a reason to go elsewhere."
+      }
+    ],
+    "tags": [
+      "gulf",
+      "oman",
+      "short-haul",
+      "cities"
+    ],
+    "sources": [
+      {
+        "name": "Air India — Oman visa information for Indian travellers",
+        "url": "https://www.airindia.com/in/en/travel-information/visa-services/oman-visa.html"
+      },
+      {
+        "name": "IndiGo — Oman visa requirements for Indians",
+        "url": "https://www.goindigo.in/information/visa-information/oman-om-visa.html"
+      }
+    ],
+    "needsVerification": [],
+    "art": "default",
+    "photo": {
+      "local": "muscat-muttrah",
+      "credit": "Yash Thakur",
+      "source": "own"
+    }
+  },
+  {
+    "id": "meghalaya-living-root-bridges",
+    "type": "discovery",
+    "status": "ready",
+    "accent": "green",
+    "place": {
+      "name": "Meghalaya",
+      "country": "India",
+      "code": "IN"
+    },
+    "title": "Bridges that are grown, not built, and take decades",
+    "standfirst": "Khasi communities train fig roots across rivers over a generation. India has just put them forward for UNESCO.",
+    "body": [
+      "In the Khasi and Jaintia Hills, people cross rivers on bridges made from the living roots of rubber fig trees, trained across the water over years until they can carry a person. They are called jingkieng jri. They connect more than 75 remote villages in one of the wettest inhabited places on earth, and unlike concrete they get stronger with age.",
+      "In January 2026 India submitted the nomination dossier to UNESCO — the Jingkieng Jri cultural landscape, for the 2026-27 cycle. That is a submission, not an inscription, and the process takes time. But it is the clearest signal yet that these stop being a local curiosity and start being a queue.",
+      "Go for the villages rather than the single famous double-decker bridge. The walk down is long, the walk back up is longer, and the wettest months are exactly when the region is at its most extraordinary and its most difficult."
+    ],
+    "facts": [
+      {
+        "label": "What",
+        "value": "Jingkieng Jri — bridges grown from living rubber fig roots by Khasi and Jaintia communities"
+      },
+      {
+        "label": "Reach",
+        "value": "Connect more than 75 remote villages"
+      },
+      {
+        "label": "UNESCO status",
+        "value": "Nomination submitted January 2026 for the 2026-27 cycle — not yet inscribed"
+      },
+      {
+        "label": "Base",
+        "value": "Shillong, then onward by road into the Khasi Hills"
+      }
+    ],
+    "tags": [
+      "northeast-india",
+      "meghalaya",
+      "unesco",
+      "walking"
+    ],
+    "sources": [
+      {
+        "name": "News on AIR (Prasar Bharati, Government of India) — nomination submitted",
+        "url": "https://www.newsonair.gov.in/india-submits-meghalayas-living-root-bridges-to-unesco-for-world-heritage-status"
+      },
+      {
+        "name": "The Print — India nominates Living Root Bridges of Meghalaya",
+        "url": "https://theprint.in/india/india-nominates-living-root-bridges-of-meghalaya-for-unesco-inscription/2886536/"
+      }
+    ],
+    "needsVerification": [],
+    "art": "ziro"
+  },
+  {
+    "id": "ella-sri-lanka-hill-country",
+    "type": "discovery",
+    "status": "ready",
+    "accent": "teal",
+    "place": {
+      "name": "Ella",
+      "country": "Sri Lanka",
+      "code": "LK"
+    },
+    "title": "The cheapest good idea for an Indian passport right now",
+    "standfirst": "Sri Lanka's hill country is a short flight, a free entry permit, and a train ride people plan whole trips around.",
+    "body": [
+      "Ella is a small town in Sri Lanka's hill country, surrounded by tea estates and reached by a train line that people book trips around rather than merely tolerate. The Kandy to Ella stretch runs slowly through tea country with the doors open, which is most of the point.",
+      "What makes it unusually easy for Indian travellers in 2026 is the paperwork, or the lack of it. The tourist ETA is free for Indian passport holders — 30 days, double entry — and the flight from South India is short enough to make a five-day trip make sense.",
+      "Apply for the ETA online at eta.gov.lk before you fly even though it is free and even though arrival counters exist. Third-party sites charge for something the government does not."
+    ],
+    "facts": [
+      {
+        "label": "Entry",
+        "value": "Free tourist ETA for Indian passport holders · 30 days · double entry"
+      },
+      {
+        "label": "Apply",
+        "value": "eta.gov.lk only — third-party sites add fees the government does not charge"
+      },
+      {
+        "label": "Since",
+        "value": "Free ETA extended to 40 nationalities from 25 May 2026"
+      },
+      {
+        "label": "The train",
+        "value": "Kandy to Ella through the tea estates — book ahead, reserved seats go early"
+      }
+    ],
+    "tags": [
+      "sri-lanka",
+      "short-haul",
+      "trains",
+      "tea-country"
+    ],
+    "sources": [
+      {
+        "name": "Business Today — Sri Lanka visa free for Indians in 2026",
+        "url": "https://www.businesstoday.in/nri/visa/story/sri-lanka-visa-free-for-indians-in-2026-how-to-get-your-free-eta-what-to-carry-all-you-need-to-know-525971-2026-04-17"
+      },
+      {
+        "name": "Wego — Sri Lanka free visa for Indians, ETA guide",
+        "url": "https://blog.wego.com/sri-lanka-free-visa-for-indians-entry-rules-eta-guide-and-travel-tips/"
+      }
+    ],
+    "needsVerification": [],
+    "art": "default"
+  },
+  {
+    "id": "sri-lanka-eta-free-40-nationalities",
+    "type": "dispatch",
+    "status": "ready",
+    "accent": "marigold",
+    "place": {
+      "name": "Sri Lanka",
+      "country": "Sri Lanka",
+      "code": "LK"
+    },
+    "title": "Sri Lanka stopped charging Indians to enter",
+    "standfirst": "The tourist ETA is now free for 40 nationalities, India among them. The catch is who you apply through.",
+    "body": [
+      "Sri Lanka's free tourist ETA scheme took effect on 25 May 2026 following parliamentary approval earlier that month, extending fee-free entry to nationals of 40 countries. India is on the list, alongside the UK, the US, the UAE and Saudi Arabia.",
+      "For an Indian passport that means 30 days, double entry, and nothing to pay. It applies to tourism, and the fee waiver was confirmed across tourist, business and transit categories.",
+      "The thing worth knowing is not the rule but the scams around it. Because the ETA is free, the value has moved to intermediaries who charge a 'service fee' for filling in a government form. Apply at eta.gov.lk. Anything asking for money is not the government.",
+      "You can still be processed on arrival at Colombo, but doing it online first is the difference between walking through and queueing."
+    ],
+    "facts": [
+      {
+        "label": "Effective",
+        "value": "25 May 2026, after parliamentary approval on 7 May 2026"
+      },
+      {
+        "label": "Who",
+        "value": "40 nationalities including India"
+      },
+      {
+        "label": "For Indians",
+        "value": "30 days · double entry · no fee"
+      },
+      {
+        "label": "Apply at",
+        "value": "eta.gov.lk — the only site that should charge nothing"
+      }
+    ],
+    "tags": [
+      "visas",
+      "sri-lanka",
+      "india",
+      "planning"
+    ],
+    "sources": [
+      {
+        "name": "Business Today — free ETA for Indians, what to carry",
+        "url": "https://www.businesstoday.in/nri/visa/story/sri-lanka-visa-free-for-indians-in-2026-how-to-get-your-free-eta-what-to-carry-all-you-need-to-know-525971-2026-04-17"
+      },
+      {
+        "name": "VisasNews — tourist ETA free for 40 nationalities from 25 May",
+        "url": "https://visasnews.com/en/sri-lanka-makes-tourist-eta-free-for-40-nationalities-from-may-25/"
+      }
+    ],
+    "staleAfter": "2027-05-31",
+    "needsVerification": [],
+    "art": "passport"
+  },
+  {
+    "id": "itinerary-seychelles-three-islands",
+    "type": "itinerary",
+    "status": "draft",
+    "accent": "violet",
+    "place": {
+      "name": "Seychelles",
+      "country": "Seychelles",
+      "code": "SC"
+    },
+    "title": "Mahé, Praslin, La Digue in four days",
+    "standfirst": "A real island-hop, logged and verified on Bhrmn — not a route assembled from other people's blogs.",
+    "body": [],
+    "days": [
+      {
+        "day": 1,
+        "place": "Mahé",
+        "note": ""
+      },
+      {
+        "day": 2,
+        "place": "Praslin",
+        "note": ""
+      },
+      {
+        "day": 3,
+        "place": "La Digue",
+        "note": ""
+      },
+      {
+        "day": 4,
+        "place": "Mahé",
+        "note": ""
+      }
+    ],
+    "facts": [],
+    "tags": [
+      "indian-ocean",
+      "island-hopping",
+      "short-trip"
+    ],
+    "sources": [],
+    "author": {
+      "handle": "bhrmn",
+      "name": "",
+      "verifiedTrip": true,
+      "tripDates": "30 Jul - 2 Aug 2026"
+    },
+    "needsVerification": [
+      "DRAFT — needs Yash's real detail: ferry times and operator, what each day actually cost, where he stayed, what he would skip.",
+      "This is the first Itinerary card backed by a verified trip on the platform. It must be the route he actually took, not a tidied-up version."
+    ],
+    "art": "island",
+    "photo": {
+      "local": "seychelles-mahe",
+      "credit": "Yash Thakur",
+      "source": "own"
+    }
+  },
+  {
+    "id": "thailand-tdac-arrival-card",
+    "type": "dispatch",
+    "status": "ready",
+    "accent": "marigold",
+    "place": {
+      "name": "Thailand",
+      "country": "Thailand",
+      "code": "TH"
+    },
+    "title": "Thailand's paper form is gone. The new one is easy to miss.",
+    "standfirst": "Every non-Thai arrival now needs a digital arrival card, submitted before you fly. It is free, and there is a 72-hour window.",
+    "body": [
+      "The old TM6 card — the one handed out on the plane and filled in with a borrowed pen — was retired on 1 May 2025. In its place is the Thailand Digital Arrival Card, submitted online before you arrive, and required of every non-Thai national entering by air, land or sea.",
+      "Two details catch people. It can only be submitted within 72 hours of arrival, so doing it a fortnight early when you remember does not work. And it is single-entry: hop to Laos for a weekend and come back, and you need a fresh one.",
+      "It is free on the government portal. Sites charging a 'processing fee' for it are charging you for a form you can fill in yourself in five minutes.",
+      "Small upside if you are organised: since March 2026 many travellers can use automated border gates, where facial recognition matches you against the arrival card and passport already on file. The queue you skip is the reward for doing the paperwork."
+    ],
+    "facts": [
+      {
+        "label": "Required of",
+        "value": "All non-Thai nationals, arriving by air, land or sea"
+      },
+      {
+        "label": "Since",
+        "value": "1 May 2025 — replaced the paper TM6"
+      },
+      {
+        "label": "Window",
+        "value": "Submit within 72 hours before arrival, not earlier"
+      },
+      {
+        "label": "Validity",
+        "value": "Single entry — a new card for every crossing"
+      },
+      {
+        "label": "Apply at",
+        "value": "tdac.immigration.go.th — free"
+      }
+    ],
+    "tags": [
+      "visas",
+      "thailand",
+      "planning",
+      "southeast-asia"
+    ],
+    "sources": [
+      {
+        "name": "Tourism Authority of Thailand — TDAC guideline (official)",
+        "url": "https://www.tourismthailand.org/Articles/tdac"
+      },
+      {
+        "name": "Bangkok Airways — TDAC guide 2026",
+        "url": "https://blog.bangkokair.com/en/thailand-digital-arrival-card-tdac-guide/"
+      }
+    ],
+    "staleAfter": "2027-06-30",
+    "needsVerification": [],
+    "art": "passport"
+  },
+  {
+    "id": "almaty-kazakhstan",
+    "type": "discovery",
+    "status": "ready",
+    "accent": "teal",
+    "place": {
+      "name": "Almaty",
+      "country": "Kazakhstan",
+      "code": "KZ"
+    },
+    "title": "A city with mountains at the end of the street, and no visa required",
+    "standfirst": "Indians have walked into Kazakhstan without a visa since 2022. Almost nobody has noticed.",
+    "body": [
+      "Almaty sits hard against the Tian Shan, close enough that you can be on a chairlift in the mountains within an hour of leaving the city centre. It is green, Soviet-planned, full of tree-lined avenues, and priced like nowhere else at that latitude.",
+      "The reason to know about it now is procedural. Indian passport holders have had visa-free access since February 2022 — no application, no fee, no e-visa portal. You turn up with a passport.",
+      "The limit is the part to read carefully. Fourteen days per visit, and no more than forty-two days total in any rolling 180-day period. Fine for a week of mountains. Not a place to base yourself for a season.",
+      "One more thing that trips people: if you are staying with a friend rather than a hotel, your host has to register you within three business days. Hotels handle it for you. A spare room does not."
+    ],
+    "facts": [
+      {
+        "label": "Visa",
+        "value": "Visa-free for Indian passport holders since February 2022 — nothing to apply for"
+      },
+      {
+        "label": "Per visit",
+        "value": "Up to 14 consecutive days"
+      },
+      {
+        "label": "Rolling cap",
+        "value": "Maximum 42 days total in any 180-day period"
+      },
+      {
+        "label": "If staying privately",
+        "value": "Host must register you within 3 business days"
+      },
+      {
+        "label": "QazETA",
+        "value": "Pre-travel app launched Jan 2026 — recommended, not yet mandatory"
+      }
+    ],
+    "tags": [
+      "central-asia",
+      "kazakhstan",
+      "mountains",
+      "visa-free"
+    ],
+    "sources": [
+      {
+        "name": "Embassy of India, Astana — visa-free travel for Indian citizens (official)",
+        "url": "https://www.indembastana.gov.in/page/kazakhstan-introduced-visa-free-travel-for-citizens-of-india-for-up-to-14-days/"
+      },
+      {
+        "name": "Gulf News — Indian passport gains Kazakhstan access",
+        "url": "https://gulfnews.com/business/tourism/visa-free-travel-2026-two-new-destinations-open-for-indian-passport-holders-1.500415215"
+      }
+    ],
+    "needsVerification": [],
+    "art": "kazbegi"
+  },
+  {
+    "id": "thailand-or-vietnam",
+    "type": "thisOrThat",
+    "status": "ready",
+    "accent": "terracotta",
+    "place": {
+      "name": "Thailand",
+      "country": "Thailand",
+      "code": "TH"
+    },
+    "title": "Thailand or Vietnam",
+    "standfirst": "The first Southeast Asia trip almost always comes down to these two. They are not the same holiday.",
+    "question": "Ten days, first time in Southeast Asia, flying from India. Which?",
+    "optionA": {
+      "name": "Thailand",
+      "pitch": "Easier in every practical sense. More direct flights from more Indian cities, infrastructure built for first-timers, and you can be on a beach the same day you land.",
+      "against": "That ease is the trade. The well-known routes are busy, and it is possible to spend ten days in Thailand without meeting a Thai person who is not being paid to talk to you."
+    },
+    "optionB": {
+      "name": "Vietnam",
+      "pitch": "Longer and narrower, so a trip becomes a route rather than a base — north to south, or the reverse. Food is the best argument, and it is cheaper day to day.",
+      "against": "More moving. Domestic flights or overnight trains eat time you might have spent still. And it needs an e-visa applied for online before you fly, where Thailand does not."
+    },
+    "body": [
+      "The paperwork is not the deciding factor but it is worth knowing: Thailand needs no visa in advance for many travellers, only the digital arrival card within 72 hours of landing. Vietnam requires an e-visa applied for at the government portal, evisa.gov.vn, before you travel.",
+      "The honest split: Thailand is the better first trip and Vietnam is the better second one. Thailand teaches you the region. Vietnam rewards you for already knowing how to move through it."
+    ],
+    "facts": [
+      {
+        "label": "Thailand",
+        "value": "Digital arrival card required, submitted within 72 hours of arrival — tdac.immigration.go.th"
+      },
+      {
+        "label": "Vietnam",
+        "value": "E-visa applied for in advance at the official portal, evisa.gov.vn"
+      }
+    ],
+    "tags": [
+      "southeast-asia",
+      "thailand",
+      "vietnam",
+      "first-trip"
+    ],
+    "sources": [
+      {
+        "name": "Tourism Authority of Thailand — TDAC guideline (official)",
+        "url": "https://www.tourismthailand.org/Articles/tdac"
+      }
+    ],
+    "needsVerification": [],
     "art": "island"
+  },
+  {
+    "id": "hoi-an-vietnam",
+    "type": "discovery",
+    "status": "draft",
+    "accent": "green",
+    "place": {
+      "name": "Hoi An",
+      "country": "Vietnam",
+      "code": "VN"
+    },
+    "title": "The town that survived by being too poor to knock down",
+    "standfirst": "Hoi An kept its old trading quarter because the river silted up and the money left. Now that is the whole reason to go.",
+    "body": [
+      "Hoi An was a working port for centuries, trading with Japanese and Chinese merchants who left their architecture behind. When the river silted and shipping moved to Da Nang, the town stopped growing — and the old quarter was never demolished to make room for anything newer.",
+      "It is small enough to walk end to end, and the strongest hours are early morning before the tour buses and late evening once they have gone.",
+      "Da Nang is thirty minutes away and does the opposite job: a real working city with a long beach, useful as a base if Hoi An by itself feels too curated."
+    ],
+    "facts": [],
+    "tags": [
+      "vietnam",
+      "slow-travel",
+      "towns"
+    ],
+    "sources": [],
+    "needsVerification": [
+      "DRAFT — Tier A facts missing. Confirm Vietnam e-visa specifics for Indian passport holders directly at evisa.gov.vn: current fee, validity, single vs multiple entry, processing time. Secondary sources agree on a 90-day e-visa at USD 25 single entry, but every source found was a visa agency with a commercial interest, so none of it is publishable as-is.",
+      "Add a fact strip once confirmed, then set status to ready."
+    ],
+    "art": "default"
+  },
+  {
+    "id": "bhutan-permit-sdf",
+    "type": "discovery",
+    "status": "draft",
+    "accent": "violet",
+    "place": {
+      "name": "Bhutan",
+      "country": "Bhutan",
+      "code": "BT"
+    },
+    "title": "The country that charges you by the night to be there",
+    "standfirst": "Bhutan meters tourism deliberately. Indians pay a fraction of what everyone else does — and do not need a tour operator.",
+    "body": [
+      "Bhutan is the rare country that has decided it does not want more visitors than it can absorb, and prices accordingly. Every tourist pays a Sustainable Development Fee per person per night, which funds healthcare, education and conservation.",
+      "Indian nationals are treated differently in two ways that matter. They do not need a visa — a permit instead — and they pay a regional rate far below the international one. They are also not required to book through a licensed tour operator, which most other nationalities are.",
+      "The practical effect is that Bhutan is within reach of an Indian traveller in a way it simply is not for most people, and you can structure the trip yourself rather than buying a package."
+    ],
+    "facts": [],
+    "tags": [
+      "himalaya",
+      "bhutan",
+      "permits",
+      "slow-travel"
+    ],
+    "sources": [],
+    "needsVerification": [
+      "DRAFT — the SDF rate is the whole point of this card and I could not source it officially. Every result was a Bhutanese tour operator with a commercial interest. They agree on INR 1,200 per person per night for Indian nationals, half for ages 6-12, exempt under 5, and no SDF for stays under 24 hours in the border towns — but confirm against Bhutan's Department of Tourism or the official permit portal before publishing.",
+      "Also confirm the current permit application route for Indian nationals and whether a tour operator is genuinely optional."
+    ],
+    "art": "himalaya"
   }
 ]

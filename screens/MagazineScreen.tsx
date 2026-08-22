@@ -1,7 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { FlatList, LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import CardArt, { type ArtKey } from '../components/CardArt';
+import CardCover from '../components/CardCover';
+import { type ArtKey } from '../components/CardArt';
 import { publishableCards, TYPE_LABEL, type Card } from '../lib/cards';
 import { flagOf } from '../lib/trips';
 import { colors, type as t } from '../theme';
@@ -79,9 +80,11 @@ function CardFace({ card, height, topInset, onOpen }: {
 
   return (
     <Pressable style={[s.card, { height }]} onPress={onOpen}>
-      <View style={{ height: artHeight, overflow: 'hidden' }}>
-        <CardArt art={(card.art ?? 'default') as ArtKey} height={artHeight} />
-      </View>
+      <CardCover
+        photo={card.photo}
+        art={(card.art ?? 'default') as ArtKey}
+        height={artHeight}
+      />
 
       <View style={[s.body, { paddingTop: 20 }]}>
         <View style={s.kickerRow}>

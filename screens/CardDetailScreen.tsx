@@ -1,7 +1,8 @@
 import React from 'react';
 import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import CardArt, { type ArtKey } from '../components/CardArt';
+import CardCover from '../components/CardCover';
+import { type ArtKey } from '../components/CardArt';
 import { allCards, TYPE_LABEL } from '../lib/cards';
 import { flagOf } from '../lib/trips';
 import { colors, type as t } from '../theme';
@@ -20,7 +21,7 @@ export default function CardDetailScreen({ route, navigation }: any) {
   return (
     <View style={s.wrap}>
       <ScrollView contentContainerStyle={{ paddingBottom: 120 }} showsVerticalScrollIndicator={false}>
-        <CardArt art={(card.art ?? 'default') as ArtKey} height={230} />
+        <CardCover photo={card.photo} art={(card.art ?? 'default') as ArtKey} height={230} />
 
         <View style={s.body}>
           <View style={s.kickerRow}>
@@ -41,6 +42,30 @@ export default function CardDetailScreen({ route, navigation }: any) {
                   <Text style={s.optionAgainst}>But — {o.against}</Text>
                 </View>
               ))}
+            </View>
+          )}
+
+          {card.type === 'itinerary' && (card.days ?? []).length > 0 && (
+            <View style={s.days}>
+              {card.days!.map((d) => (
+                <View key={d.day} style={s.dayRow}>
+                  <View style={[s.dayNum, { borderColor: accent }]}>
+                    <Text style={[s.dayNumText, { color: accent }]}>{d.day}</Text>
+                  </View>
+                  <View style={s.dayBody}>
+                    <Text style={s.dayPlace}>{d.place}</Text>
+                    {!!d.note && <Text style={s.dayNote}>{d.note}</Text>}
+                  </View>
+                </View>
+              ))}
+            </View>
+          )}
+
+          {card.type === 'itinerary' && card.author?.verifiedTrip && (
+            <View style={s.verifiedBy}>
+              <Text style={s.verifiedByText}>
+                ✓ Backed by a verified trip · @{card.author.handle} · {card.author.tripDates}
+              </Text>
             </View>
           )}
 
@@ -98,6 +123,22 @@ const s = StyleSheet.create({
   optionName: { ...t.display, fontSize: 18, color: colors.ink, marginBottom: 6 },
   optionPitch: { ...t.body, fontSize: 14, lineHeight: 22, color: colors.ink },
   optionAgainst: { ...t.body, fontSize: 13, lineHeight: 21, color: colors.inkSoft, marginTop: 8, fontStyle: 'italic' },
+  days: { gap: 2, marginBottom: 20 },
+  dayRow: { flexDirection: 'row', gap: 14, alignItems: 'flex-start', paddingVertical: 10 },
+  dayNum: {
+    width: 30, height: 30, borderRadius: 15, borderWidth: 1.5,
+    alignItems: 'center', justifyContent: 'center',
+  },
+  dayNumText: { ...t.mono, fontSize: 12, fontWeight: '600' },
+  dayBody: { flex: 1, paddingTop: 4 },
+  dayPlace: { ...t.body, fontSize: 16, color: colors.ink, fontWeight: '600' },
+  dayNote: { ...t.body, fontSize: 14, lineHeight: 21, color: colors.inkSoft, marginTop: 4 },
+  verifiedBy: {
+    borderWidth: 1, borderColor: colors.green, borderRadius: 10,
+    paddingVertical: 10, paddingHorizontal: 14, marginBottom: 20,
+    backgroundColor: 'rgba(78,122,82,0.07)',
+  },
+  verifiedByText: { ...t.mono, fontSize: 10, letterSpacing: 0.5, color: colors.green },
   facts: { borderTopWidth: 1, borderTopColor: colors.hairline, marginTop: 6, paddingTop: 16, gap: 12 },
   factRow: { gap: 3 },
   factLabel: { ...t.mono, fontSize: 9, letterSpacing: 1.2, color: colors.inkFaint },
